@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<dataset>
+
+    <customer id="100" fullname="Сергей Сергеевич Сергеев" balance="123.9" isactive="true" login="ser123"
+              password="fhsdifjksdofmdlsfmd,l;fm;lds"/>
+    <token token="666666666" customer_id="100" created="2017-09-09 13:13:13" expired="2020-09-09 13:13:13"/>
+    <partnermapping id="102" accountidentity="serser1" applicationidentity="vk.com" fullname="superman"
+                    customer_id="100" avatar_id="104"/>
+    <photo id="104" photo="MTIzNDU=" mimetype="image/jpeg"/>
+    <partnermapping id="103" accountidentity="serser2" applicationidentity="ok.ru" fullname="batman" customer_id="100"/>
+    <customer id="101" fullname="Олег Олегович Олегов" balance="12.9" isactive="true" login="oleg2"
+              password="fsdfsdfdsfdsfdsfdsfsd"/>
+    <token token="777777777" customer_id="101" created="2017-09-09 13:13:13" expired="2017-09-19 13:13:13"/>
+</dataset>

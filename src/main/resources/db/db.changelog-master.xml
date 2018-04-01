@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet dbms="h2" id="create_seq_by_all_tables" author="drudenko">
+        <createSequence sequenceName="seq_entity"/>
+    </changeSet>
+
+    <changeSet dbms="h2" author="drudenko" id="create_customer_table">
+        <createTable tableName="customer">
+            <column name="id" type="bigint" valueSequenceNext="seq_entity">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="fullname" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="isactive" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="login" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet dbms="h2" author="drudenko" id="create_token_table">
+        <createTable tableName="token">
+            <column name="token" type="varchar(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expired" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet dbms="h2" author="drudenko" id="create_partnermapping_table">
+        <createTable tableName="partnermapping">
+            <column name="id" type="bigint" valueSequenceNext="seq_entity">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="accountidentity" type="varchar(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="applicationidentity" type="varchar(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="fullname" type="varchar(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avatar_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet dbms="h2" author="drudenko" id="create_photo_table">
+        <createTable tableName="photo">
+            <column name="id" type="bigint" valueSequenceNext="seq_entity">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="photo" type="BYTEA">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="mimetype" type="varchar(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet dbms="h2" id="init_token" author="drudenko">
+        <insert tableName="token">
+            <column name="token" value="1234567890"/>
+            <column name="customer_id" value="1"/>
+            <column name="created" value="2017-09-09 13:13:13"/>
+            <column name="expired" value="2020-09-09 13:13:13"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="id" valueSequenceNext="seq_entity"/>
+            <column name="fullname" value="Иванов Иван Иванович"/>
+            <column name="balance" value="1000.0"/>
+            <column name="isactive" value="true"/>
+            <column name="login" value="ivanov"/>
+            <column name="password" value="4dfe6e220d16e7b633cfdd92bcc8050b"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
