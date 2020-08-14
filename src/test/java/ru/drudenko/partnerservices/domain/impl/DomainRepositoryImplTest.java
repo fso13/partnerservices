@@ -54,8 +54,8 @@ public class DomainRepositoryImplTest {
         assertNotNull(token);
 
         assertEquals(token.getToken(), "666666666");
-        assertEquals(token.getCreated(), Instant.parse("2017-09-09T10:13:13Z"));
-        assertEquals(token.getExpired(), Instant.parse("2020-09-09T10:13:13Z"));
+        assertEquals(token.getCreated().getNano(), Instant.parse("2017-09-09T13:13:13Z").getNano());
+        assertEquals(token.getExpired().getNano(), Instant.parse("2020-09-09T13:13:13Z").getNano());
 
         assertNotNull(token.getCustomer());
         assertEquals(token.getCustomer().getId(), Long.valueOf(100));
